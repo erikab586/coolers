@@ -1,0 +1,344 @@
+
+PRINCIPAL
+
+ROL_USUARIO
+    id,
+    nombrerol
+
+USUARIO
+    id, 
+    idrol,  
+    nombres, 
+    apellidos,
+    telefono, 
+    email, 
+    password,
+    estatus, 
+    fechaconexion
+
+FRUTA
+    id, 
+    nombrefruta, 
+    imgfruta
+
+PRESENTACION
+    id, 
+    nombrepresentacion, 
+    descripcionpresentacion
+
+VARIEDAD
+    id, 
+    tipofruta
+
+COOLER
+    id, 
+    nombrecooler,
+    codigoidentificador,
+    ubicacion
+
+CAMARA
+    id, 
+    idcooler,
+    codigo,
+    capacidadminima,
+    capacidadmaxima 
+    tipo(PRE ENFRIADO, CONSERVACIÓN)
+
+TIPO_PALLET
+    id, 
+    tipopallet
+
+COMERZIALIZADORA
+    id, 
+    rfc,
+    nombrerepresentante,
+    numtelefono, 
+    correo,
+    banco, 
+    clave, 
+    abreviatura,
+    imgcomercializadora,
+    nombrecomercializadora,
+    estatus
+
+CONTRATO
+    id
+    tipocliente(EXPORTACIÓN, IMPORTACIÓN ),
+    tipomoneda(PESO, DOLAR),
+    tipocontrato(TEMPORADA, ANUAL),
+    idcomercializadora,
+    idusuario,
+    idcooler,
+    idfruta[],
+    idvariedad[],
+    monto[],
+    imagen,
+    estatus,
+    fechacontrato
+
+RECEPCION
+    datosclave,
+    area,
+    revision,
+    fechaemision,
+    imagen,
+    folio,
+    idcomercializadora,
+    idusuario,
+    estatus,
+
+DETALLE_RECEPCION
+    idrecepcion,
+    idfruta,
+    variedad,
+    idtarima,
+    hora,
+    temperatura,
+    tipo_temperatura,
+    presentacion, 
+    folio,
+    cantidad,
+
+TARIMA
+    idrecepcion,
+    numpallet,
+    tipopallet,
+    cantidad,
+    codigo
+
+
+
+
+PERMISOS_USUARIO
+
+
+
+
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:+lM3081gQdEDv3K+jLk+ipiAm5jV+nvb+tP4UQrpdic=
+APP_DEBUG=true
+APP_URL=https://bonumcoolersdemexico.techtivitys.com/public
+
+APP_LOCALE=en
+APP_FALLBACK_LOCALE=en
+APP_FAKER_LOCALE=en_US
+
+APP_MAINTENANCE_DRIVER=file
+# APP_MAINTENANCE_STORE=database
+
+PHP_CLI_SERVER_WORKERS=4
+
+BCRYPT_ROUNDS=12
+
+LOG_CHANNEL=stack
+LOG_STACK=single
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=uhuqvnfa_coolersoficial
+DB_USERNAME=uhuqvnfa_coolersoficial
+DB_PASSWORD=Coolersoficial2025.
+
+SESSION_DRIVER=database
+SESSION_LIFETIME=120
+SESSION_ENCRYPT=false
+SESSION_PATH=/
+SESSION_DOMAIN=null
+
+BROADCAST_CONNECTION=log
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=database
+
+CACHE_STORE=database
+# CACHE_PREFIX=
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_CLIENT=phpredis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=log
+MAIL_SCHEME=null
+MAIL_HOST=127.0.0.1
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+VITE_APP_NAME="${APP_NAME}"
+
+
+RECEPCION
+Id
+datosclave
+area
+revision
+fechaemision
+imagen
+folio
+estatus ['CON DETALLE', 'TARIMA', 'EN PREENFRIADO', 'EN CONSERVACIÓ', 'EN EMBARQUE', 'FINALIZADO']
+idusuario
+idcontrato
+
+DETALLE_RECEPCION
+Id
+idrecepcion
+idfruta
+idvariedad
+idpresentacion
+hora
+temperatura
+tipo
+cantidad
+folio
+
+Tarimas
+codigo
+cantidad
+capacidad
+estatus
+
+DetalleTarimas
+iddetalle
+idtarima
+idtipopallet
+codigo
+cantidad
+cantidad_usada
+estatus
+
+
+PREENFRIO
+    'idcamara', //De tipo preenfriado
+    'idtarima'
+
+DETALLE_PREENFRIO
+    'idpreenfrio',
+    'iddetalle',
+    'hora_entrada',
+    'temperatura_entrada',
+    'hora_salida',
+    'temperatura_salida',
+    'tiempototal',
+    
+CONSERVACION
+    'idcamara', //De tipo CONSERVACIÓN
+    'idtarima'
+
+DETALLE_CONSERVACION
+    'idconservacion',
+    'iddetalle',
+    'hora_entrada',
+    'temperatura_entrada',
+    'hora_salida',
+    'temperatura_salida',
+    'tiempototal',
+
+EMBARCACION
+    'id', es clave primaria incremental
+
+    'trans_placa', es obligatorio varchar(100)
+    'trans_placacaja',es obligatorio varchar(100)
+    'trans_temperaturacaja',es obligatorio varchar(100)
+
+    'condtrans_estado', es obligatorio booleano (si o no)
+    'condtrans_higiene'es obligatorio booleaoo (si o no)
+    'condtrans_plagas',es obligatorio booleano (si o no)
+
+    'condtar_desmontado',es obligatorio booleano (bueno o malo)
+    'condtar_flejado',es obligatorio booleano     (bueno o malo)
+    'condtar_distribucion',es obligatorio booleano (bueno o malo)
+
+    'infcarga_hrallegada', es obligatorio time
+    'infcarga_hracarga', es obligatorio time
+    'infcarga_hrasalida', es obligatorio time
+    'infcarga_nsello',    es obligatorio varchar(100)
+    'infcarga_nchismografo', es obligatorio varchar(100)
+
+    'id_usuario', clave foranea de users
+    'firma_usuario' es obligatorio text
+
+    'nombre_responsblecliente', es obligatorio varchar(100)
+    'apellido_responsablecliente',es obligatorio varchar(100)
+    'firma_cliente' es obligatorio text
+    
+    'nombre_responsblechofer', es obligatorio varchar(100)
+    'apellido_responsablechofer',es obligatorio varchar(100)
+    'firma_chofer',es obligatorio text
+    
+    'linea_transporte',es obligatorio varchar(100)
+
+    'total1', entero
+    'total2', entero
+    'total3', entero
+    'total4', entero
+    'total5', entero
+    'total6', entero 
+
+DETALLE EMBARCACION
+    'id' es la clave primaria incremental
+    'idembarcacion' es clave foranea de embarcacion
+    'idconservacion' es clave foranea de conservacion
+
+Reporte de Cobranza
+
+               
+
+
+
+1                    2          freza             fresa        1LB           25         agregar{iddetalle}
+1                    3          freza             zarzamora    2LB           90         agregar{iddetalle}
+
+
+/* $preenfriados = TarimaDetarec::with([
+            'tarima', 
+            'detalle.recepcion.contrato.comercializadora', // carga las relaciones anidadas
+            'tipopallet'
+        ])
+        ->whereHas('detalle', function ($query) {
+            $query->where('estatus', 'preenfriado');
+        })
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        $agrupados = $preenfriados->groupBy(function ($item) {
+            return $item->detalle->idrecepcion;
+        });
+
+        $resumenPorRecepcion = $agrupados->map(function ($items, $idrecepcion) {
+            $codigoTarima = $items->first()->tarima->codigo ?? '—';
+            $sumaCantidad = $items->sum(fn($item) => $item->detalle->cantidad);
+            $estatus = $items->first()->detalle->estatus ?? '—';
+            $tipopallet = $items->first()->tipopallet->tipopallet ?? '—';
+            $folio = $items->first()->detalle->folio ?? '—';
+
+            // Comercializadora: si existe la relación y nombre
+            $comercializadora = optional($items->first()->detalle->recepcion->contrato->comercializadora)->abreviatura ?? '—';
+            $imgcomercializadora = optional($items->first()->detalle->recepcion->contrato->comercializadora)->imgcomercializadora ?? '—';
+            $fechaCreacion = optional($items->first()->created_at)->format('Y-m-d H:i:s') ?? '—';
+            return (object) [
+                'idrecepcion' => $idrecepcion,
+                'codigo_tarima' => $codigoTarima,
+                'suma_cantidad' => $sumaCantidad,
+                'estatus_detalle' => $estatus,
+                'tipopallet' => $tipopallet,
+                'folio' => $folio,
+                'comercializadora' => $comercializadora,
+                'imgcomercializadora'=>$imgcomercializadora,
+                'fecha_creacion' => $fechaCreacion,
+                'total_detalles' => $items->count(),
+            ];
+        });*/

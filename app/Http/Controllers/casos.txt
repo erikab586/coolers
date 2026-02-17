@@ -1,0 +1,16 @@
+// REGLA 1: Preenfriado normal (desde entrada hasta 48 horas)
+$tiempoPreenfriado > 0 && $tiempoPreenfriado <= 48 && $tiempoConservacion < 48
+// REGLA 2: Con cruce de andén y más de 3000 cajas (evalúa cantidad total del folio)
+$tieneServicioAnden && $cantidadTotalFolio > 3000 && $tiempoConservacion < 48 && $comercializadora=='CALGIANT'
+// REGLA 3: Conservación de 48 a 72 horas (sin cruce de andén)
+$tieneServicioAnden && $tiempoConservacion >= 48 && $tiempoConservacion <= 72
+// REGLA 4: Con cruce de andén y más de 72 horas en conservación
+$tieneServicioAnden && $tiempoConservacion >= 48 && $tiempoConservacion > 72
+// REGLA 5: Sin cruce de andén y conservación de 48 a 72 horas
+$tiempoConservacion >= 48 && $tiempoConservacion <= 72
+//REGLA6: con cruce de anden 
+$tieneServicioAnden
+// REGLA 7: Con cruce de andén y más de 3000 cajas (evalúa cantidad total del folio)
+$tieneServicioAnden && $cantidadTotalFolio > 3000 && $tiempoConservacion >= 48 && $tiempoConservacion <= 72 && $comercializadora=='CALGIANT'
+
+                              
